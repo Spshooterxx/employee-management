@@ -1,0 +1,39 @@
+<div class="container">
+  <h2>Employee Management</h2>
+  
+  <div class="button-group">
+    <a routerLink="/add" class="add-button">Add Employee</a>
+  </div>
+
+  <div class="filter-container">
+    <input type="text" (keyup)="applyFilter($event)" placeholder="Search employees" class="search-input">
+  </div>
+
+  <div class="table-container">
+    <table class="simple-table">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Name</th>
+          <th>Position</th>
+          <th>Department</th>
+          <th>Salary</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let employee of dataSource.data">
+          <td>{{ employee.id }}</td>
+          <td>{{ employee.name }}</td>
+          <td>{{ employee.position }}</td>
+          <td>{{ employee.department }}</td>
+          <td>${{ employee.salary }}</td>
+          <td class="actions">
+            <a [routerLink]="['/edit', employee.id]" class="edit-btn">Edit</a>
+            <button (click)="deleteEmployee(employee.id)" class="delete-btn">Delete</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
